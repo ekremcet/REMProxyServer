@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}&#128586; REM Proxy &#128586;{% endblock title %}
+
+{% block content %}
+<div class="jumbotron" style="width:100%">
+  <p class="lead">Access any website anywhere.</p>
+
+   <div class="modal-body row">
+  <div class="col-md-7">
+   <form action="#" method="post">
+     {% csrf_token %}
+{{ form }}
+  <input class="form-control" type="text" value="" id="example-url-input" name="text_urlinput" placeholder="Enter the URL you would like to visit.">
+       </div>
+	 <div class="col-md-2">
+ <input type="checkbox" name="compression" value="compression"> Enable Compression<br>
+     </div> 
+  <div class="col-md-3">
+  <input type="submit" class="btn btn-primary btn" value="Access web site" name="mybtn">
+  </div>
+  </form>
+  
+
+</div>
+
+  <div class="modal-body row">
+  <div class="col-md-10">
+    {% load static %}
+  <iframe id="encoder_iframe" class="shadow-lg p-3 mb-5 bg-white rounded" style="width: 77vw;height: 90vh;position: relative;" src='{{ url_path }}'>
+
+  </iframe>
+
+  </div>
+  <div class="col-md-2 shadow-lg p-3 mb-5 bg-white rounded">
+
+{% include 'logs.html' %}
+
+</div>
+</div>
+</div>
+
+
+</div>
+{% endblock content %}

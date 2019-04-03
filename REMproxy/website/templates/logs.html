@@ -1,0 +1,22 @@
+{% block content %}
+	<div class="row">
+		<div class="col-md-12">
+			<h4>Logs</h4>
+			<ul class="timeline">
+				<li>
+                    <p>Page is fully loaded in <b>{{ elapsed_time }}</b> seconds.</p>
+				</li>
+                <li>
+					<p>Data saved: <b>{{ compressed_amount }}</b> kb</p>
+				</li>
+				<li>
+                    <p>File size: <b>{{ file_size }}</b> mb</p>
+				</li>
+				<li>
+					<p>Page URL: <i>{{ page_url }}</i></p>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+{% endblock content %}
