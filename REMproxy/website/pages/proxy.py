@@ -6,7 +6,7 @@ import time
 from PIL import Image
 
 DOWNLOAD_LOCATION = "./static"
-WEBPAGE_LOCATION = "/home/ubuntu/website/static/temp"
+WEBPAGE_LOCATION = "/home/remproxy/website/static/temp"
 PROJECT_NAME = "temp"
 
 class RequestProxy:
