@@ -18,9 +18,9 @@ Also you might need to change WEBSITE_LOCATION variable in proxy.py to match you
 ------
 # Running the Server
 Once you installed all the required packages go into website directory and run the following command <br>
-python3 manage.py runserver 0.0.0.0:80
-If you are running the server for the first time you might need to run the following command once only
-python3 manage.py migrate
+>python3 manage.py runserver 0.0.0.0:80 <br>
+If you are running the server for the first time you might need to run the following command once only <br>
+>python3 manage.py migrate
 
 ------
 
