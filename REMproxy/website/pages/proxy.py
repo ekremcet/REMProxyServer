@@ -1,6 +1,5 @@
 import pywebcopy
 import os
-import sys
 import subprocess
 import time
 from PIL import Image
@@ -9,17 +8,17 @@ DOWNLOAD_LOCATION = "./static"
 WEBPAGE_LOCATION = "/home/remproxy/website/static/temp"
 PROJECT_NAME = "temp"
 
+
 class RequestProxy:
     def make_request(self, url):
         # Save all the content in the webpage
         pywebcopy.config.setup_config(project_url=url, project_folder=DOWNLOAD_LOCATION, project_name=PROJECT_NAME)
         pywebcopy.config["zip_project_folder"] = False
-        pywebcopy.config["PARSER"] = "html.parser"  # They claim this is faster
+        pywebcopy.config["PARSER"] = "html.parser"
         pywebcopy.save_webpage(project_url=url, project_folder=DOWNLOAD_LOCATION)
 
-
     def get_folder_size(self):
-        return subprocess.check_output(['du','-sk', WEBPAGE_LOCATION]).split()[0].decode('utf-8')
+        return subprocess.check_output(['du', '-sk', WEBPAGE_LOCATION]).split()[0].decode('utf-8')
         
     def compress_image(self, img_file):
         try:
@@ -51,7 +50,8 @@ class RequestProxy:
     def return_html(self):
         size = self.get_folder_size()
         for dirpath, dirnames, filenames in os.walk("."):
-            for filename in [f for f in filenames if f.endswith(".html") and "_log" not in f and not f[0].isdigit()]:
+            for filename in [f for f in filenames if f.endswith(".html") and "_log" not in f and
+                                                     (not f[0].isdigit() and "google" not in dirpath)]:
                 html_path = DOWNLOAD_LOCATION + os.path.join(dirpath, filename)[1:]
 
                 return html_path, size
@@ -60,7 +60,8 @@ class RequestProxy:
     def clear_folder():
         # Clear the folder so that new website can be downloaded
         subprocess.call('rm -rf ' + WEBPAGE_LOCATION, shell=True)
- 
+
+
 def request(request_url, compress=True):
     proxy = RequestProxy()
     try:
@@ -76,4 +77,3 @@ def request(request_url, compress=True):
     file_path = file_path.replace("static", "static/{}".format(PROJECT_NAME))
         
     return file_path, folder_size, compressed_kb
-    
