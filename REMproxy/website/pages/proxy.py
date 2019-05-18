@@ -50,8 +50,8 @@ class RequestProxy:
     def return_html(self):
         size = self.get_folder_size()
         for dirpath, dirnames, filenames in os.walk("."):
-            for filename in [f for f in filenames if f.endswith(".html") and "_log" not in f and
-                                                     (not f[0].isdigit() and "google" not in dirpath)]:
+            for filename in [f for f in filenames if f.endswith(".html") and "_log" not in f and not
+                                                     (f[0].isdigit() and "google" in dirpath)]:
                 html_path = DOWNLOAD_LOCATION + os.path.join(dirpath, filename)[1:]
 
                 return html_path, size
@@ -75,5 +75,5 @@ def request(request_url, compress=True):
         compressed_kb = proxy.compress_folder()
     file_path, folder_size = proxy.return_html()
     file_path = file_path.replace("static", "static/{}".format(PROJECT_NAME))
-        
+
     return file_path, folder_size, compressed_kb
