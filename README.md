@@ -1,8 +1,7 @@
 
 # REMProxy -  HTTP/S Static Proxy Server
 
-REMProxy is a HTTP/S static webpage proxy server implemented in python. To use it you can go to <br>
-**[13.95.108.154](http://13.95.108.154/)**
+REMProxy is a HTTP/S static webpage proxy server implemented in python.
 ## Installation
 There are few steps you need to do before running REMProxy.
  1. You need Python3 in your server. Also you need some additional libraries: <br>
